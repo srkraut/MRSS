@@ -5,6 +5,8 @@ from tqdm import tqdm
 from datetime import datetime 
 import pytz
 from pathlib import Path
+import json
+import os
 
 # init cms authentication
 url = "https://cdn2.barvanna.com/api/authorize/access_token"
@@ -468,3 +470,76 @@ def delete_and_create_new_layout():
     print("Completed processing all items")
 
 delete_and_create_new_layout()
+
+# download the mrss feed into a file
+# match the old file with new file , only check similar title video name
+# if video is changed , create a array , put layout id to delete and match name and video name . 
+# if video is changed then delete the old file and save latest mrss as mrss old.
+
+#downloading the mrss feed and saving it in the local storage
+# Define the file path
+file_path = 'output_array.json'
+
+# Save the array to a JSON file
+# Save the array to a JSON file only if the file doesn't exist
+if not os.path.exists(file_path):
+    with open(file_path, 'w') as json_file:
+        json.dump(teams_videos, json_file, indent=4)
+    print(f"Data saved to {file_path}")
+else:
+    print(f"File {file_path} already exists. No data was saved.")
+
+# Load the array from a JSON file
+def load_from_json(path):
+    with open(path, 'r') as json_file:
+        data = json.load(json_file)
+    return data
+
+# Load the array from the file later
+loaded_data = load_from_json(file_path)
+print("Loaded Data:", loaded_data)
+
+print("cms layout" , cms_layout)
+
+# compare loaded data with source data array
+# Initialize an empty list for new videos
+new_video = []
+
+# Iterate through the output array
+for out_item in loaded_data:
+    for src_item in teams_videos:
+        if out_item['teams'] == src_item['teams'] and out_item['video_url'] != src_item['video_url']:
+            new_video.append({'teams': out_item['teams'], 'video_url': src_item['video_url']})
+
+print (new_video)
+new_update_array = []
+
+
+# Check if new_video is empty or not and print the appropriate message
+if not new_video:
+    print("No changes.")
+else:
+    print("There is a new video in the existing layout, updating the layout.")
+    # compare new video with cms layout and delete the cms layout and replace by new video and name
+    # Initialize the new array
+
+    # Iterate over the new update array
+    for update in new_video:
+        teams = update['teams'].replace(' ', '_')  # Format to match layout in CMS
+        for item in cms_layout:
+            if item['layout'] == teams:
+                new_entry = {
+                    'layout_id': item['layoutId'],
+                    'by_team': update['teams'],
+                    'video_url': update['video_url']
+                }
+                new_update_array.append(new_entry)
+    
+    print("new data : " , new_update_array)
+     #delete layout id , and put new layout (replacing the layout simplified)
+    delete_and_create_new_layout(new_update_array)
+    #delete existing output_array and replace it with current source
+    # Save the array to a JSON file, replacing it if it already exists
+    with open(file_path, 'w') as json_file:
+        json.dump(teams_videos, json_file, indent=4)
+        print(f"Data saved to {file_path}")
