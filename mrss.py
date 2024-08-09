@@ -174,7 +174,7 @@ def fetch_source() :
                 teams_text = teams.text.strip()
                 video_url = video_content.get('url')
                 # Append the team and video URL to the array
-                teams_videos.append({'teams': teams_text, 'video_url': video_url})
+                teams_videos.append({'by_team': teams_text, 'video_url': video_url})
 
     # Print the array
     print(teams_videos)   
@@ -183,7 +183,7 @@ def create_layout(arr):
     # Loop through each item in teams_videos and upload the video``
     for item in arr:
         try:
-            teams_text = item['teams'].replace(' ', '_')
+            teams_text = item['by_team'].replace(' ', '_')
             video_url = item['video_url']
 
             # Step 1: Download the video file from the provided URL
@@ -325,7 +325,7 @@ def compare_arrays(source, cms):
         1. Missing layouts (present in cms but not in source), with layout ID.
         2. Missing teams (present in source but not in cms), with team name and video URL.
     """
-    source_dict = {tuple(item['teams'].split(' , ')): item for item in source}
+    source_dict = {tuple(item['by_team'].split(' , ')): item for item in source}
     cms_dict = {tuple(item['layout'].replace('_', ' ').split(' , ')): item for item in cms}
 
    
@@ -336,7 +336,7 @@ def compare_arrays(source, cms):
     
     for team, item in source_dict.items():
         if team not in cms_dict:
-            missing_teams.append({'teams': item['teams'], 'video_url': item['video_url']})
+            missing_teams.append({'by_team': item['by_team'], 'video_url': item['video_url']})
 
 # Find the missing layouts
 update_result = compare_arrays(source_names, cms_layout)
@@ -348,14 +348,14 @@ def create_replacement_array(missing_layouts, missing_teams):
 
     for i in range(max_length):
         layout_data = missing_layouts[i] if i < len(missing_layouts) else {'layout': None, 'layoutId': None}
-        team_data = missing_teams[i] if i < len(missing_teams) else {'teams': None, 'video_url': None}
+        team_data = missing_teams[i] if i < len(missing_teams) else {'by_team': None, 'video_url': None}
         
         # Only create a replacement if either layout or team data is not None
-        if layout_data['layout'] or team_data['teams']:
+        if layout_data['layout'] or team_data['by_team']:
             replacements.append({
                 'replace_layout': layout_data['layout'],
                 'layout_id': layout_data['layoutId'],
-                'by_team': team_data['teams'],
+                'by_team': team_data['by_team'],
                 'video_url': team_data['video_url']
             })
 
@@ -515,8 +515,8 @@ new_video = []
 # Iterate through the output array
 for out_item in loaded_data:
     for src_item in teams_videos:
-        if out_item['teams'] == src_item['teams'] and out_item['video_url'] != src_item['video_url']:
-            new_video.append({'teams': out_item['teams'], 'video_url': src_item['video_url']})
+        if out_item['by_team'] == src_item['by_team'] and out_item['video_url'] != src_item['video_url']:
+            new_video.append({'by_team': out_item['by_team'], 'video_url': src_item['video_url']})
 
 print (new_video)
 new_update_array = []
@@ -532,12 +532,12 @@ else:
 
     # Iterate over the new update array
     for update in new_video:
-        teams = update['teams'].replace(' ', '_')  # Format to match layout in CMS
+        teams = update['by_team'].replace(' ', '_')  # Format to match layout in CMS
         for item in cms_layout:
             if item['layout'] == teams:
                 new_entry = {
                     'layout_id': item['layoutId'],
-                    'by_team': update['teams'],
+                    'by_team': update['by_team'],
                     'video_url': update['video_url']
                 }
                 new_update_array.append(new_entry)
