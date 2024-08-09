@@ -393,7 +393,7 @@ def delete_and_create_new_layout(arr):
                edit_response = requests.put(edit_url, headers=layout_headers , json=data_payload)
                print(edit_response)
 
-            if layoutid == 0 : 
+            if item['layout_id'] is None : 
                 create_layout(arr)
                 break
 
