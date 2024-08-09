@@ -180,7 +180,7 @@ def fetch_source() :
     print(teams_videos)   
 
 def create_layout():
-    # Loop through each item in teams_videos and upload the video
+    # Loop through each item in teams_videos and upload the video``
     for item in teams_videos:
         try:
             teams_text = item['teams'].replace(' ', '_')
@@ -252,12 +252,6 @@ def create_layout():
             published_layout_id = publish_response.json()['layoutId']
             print(f"Published layout ID: {published_layout_id}")
 
-            # Step 6: Insert the published layout into the campaign
-            campaign_url = 'https://cdn2.barvanna.com/api/campaign/layout/assign/2248'
-            campaign_payload = {'layoutId': published_layout_id}
-            campaign_response = requests.post(campaign_url, json=campaign_payload, headers=layout_headers)
-            campaign_response.raise_for_status()
-            print(f"Inserted layout ID {published_layout_id} into campaign")
 
         except Exception as e:
             print(f"Error processing {item}: {e}")
