@@ -467,12 +467,12 @@ def delete_and_create_new_layout(arr):
 
 delete_and_create_new_layout(replacement_array)
 
-file_path = 'output_array.json'
-if replacement_array:
-        # Save the array to a JSON file, replacing it if it already exists
-    with open(file_path, 'w') as json_file:
-        json.dump(teams_videos, json_file, indent=4)
-        print(f"Data saved to {file_path}")
+# file_path = 'output_array.json'
+# if replacement_array:
+#         # Save the array to a JSON file, replacing it if it already exists
+#     with open(file_path, 'w') as json_file:
+#         json.dump(teams_videos, json_file, indent=4)
+#         print(f"Data saved to {file_path}")
 
 # download the mrss feed into a file
 # match the old file with new file , only check similar title video name
