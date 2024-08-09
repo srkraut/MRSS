@@ -76,8 +76,8 @@ def check_layout_response(url, headers=None):
 
 result = check_layout_response(layout_list_by_folder, headers=headers)
 
-# source_url = 'https://assets.vedia.ai/rawshorts/public/vedia/mrss/prod/generic/sports-previews/mlb-pre/rss/baseball/mlb-game-preview/barvanna/latest.mrss.xml'
-source_url = 'https://cdn.itsoch.com/latest.mrss.xml'
+source_url = 'https://assets.vedia.ai/rawshorts/public/vedia/mrss/prod/generic/sports-previews/mlb-pre/rss/baseball/mlb-game-preview/barvanna/latest.mrss.xml'
+# source_url = 'https://cdn.itsoch.com/latest.mrss.xml'
 
 # URL for uploading the video
 upload_url = 'https://cdn2.barvanna.com/api/library'
