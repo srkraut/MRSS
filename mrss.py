@@ -467,7 +467,7 @@ def delete_and_create_new_layout(arr):
 
 delete_and_create_new_layout(replacement_array)
 
-# file_path = 'output_array.json'
+file_path = 'output_array.json'
 # if replacement_array:
 #         # Save the array to a JSON file, replacing it if it already exists
 #     with open(file_path, 'w') as json_file:
