@@ -179,9 +179,9 @@ def fetch_source() :
     # Print the array
     print(teams_videos)   
 
-def create_layout():
+def create_layout(arr):
     # Loop through each item in teams_videos and upload the video``
-    for item in teams_videos:
+    for item in arr:
         try:
             teams_text = item['teams'].replace(' ', '_')
             video_url = item['video_url']
@@ -266,7 +266,7 @@ if not result:
     print("The response did not meet the expected criteria. Executing code to download and setup all 15 layout")
     # Insert your alternate block of code here
     fetch_source()
-    create_layout()   
+    create_layout(teams_videos)   
     
 else:
     print("The response met the expected criteria of 15 layout in the folder")
@@ -392,6 +392,10 @@ def delete_and_create_new_layout(arr):
                     }
                edit_response = requests.put(edit_url, headers=layout_headers , json=data_payload)
                print(edit_response)
+
+            if layoutid == 0 : 
+                create_layout(arr)
+                break
 
             # Step 1: Download the video file from the provided URL
             filename = f"{video_url.split('/')[-1].split('.')[0]}.mp4"
