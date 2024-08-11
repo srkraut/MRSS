@@ -160,12 +160,12 @@ def fetch_source() :
                 localized_datetime_obj = timezone_obj.localize(naive_datetime_obj)
 
                 # Define the output format
-                output_format = "%Y-%m-%d %H:%M:%S %Z"
+                output_format = "%Y-%m-%d %H:%M:%S"
 
                 # Convert the localized datetime object to the desired format
                 formatted_date = localized_datetime_obj.strftime(output_format)
 
-                # print(formatted_date)
+                print(formatted_date)
 
         if media_group is not None:
             teams = media_group.find('media:team', namespaces)
