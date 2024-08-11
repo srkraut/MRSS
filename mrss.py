@@ -520,7 +520,7 @@ new_video = []
 for out_item in loaded_data:
     for src_item in teams_videos:
         if out_item['by_team'] == src_item['by_team'] and out_item['video_url'] != src_item['video_url']:
-            new_video.append({'by_team': out_item['by_team'], 'video_url': src_item['video_url']})
+            new_video.append({'by_team': out_item['by_team'], 'video_url': src_item['video_url'] , 'exp_date' : src_item['exp_date']})
 
 print (new_video)
 new_update_array = []
