@@ -165,7 +165,7 @@ def fetch_source() :
                 # Convert the localized datetime object to the desired format
                 formatted_date = localized_datetime_obj.strftime(output_format)
 
-                print(formatted_date)
+                # print(formatted_date)
 
         if media_group is not None:
             teams = media_group.find('media:team', namespaces)
@@ -196,8 +196,8 @@ def create_layout(arr):
                 'name': filename,
                 'folderId': '5',
                 'deleteOnExpiry': 1,
-                # 'expires' : '2024-09-08 21:20:00'
-                'expires': item['exp_date']
+                'expires' : '2024-10-08 21:20:00'
+                # 'expires': item['exp_date']
             }
             headers = {
                 'Authorization': f'Bearer {access_token}'
