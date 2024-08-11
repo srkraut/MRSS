@@ -76,8 +76,8 @@ def check_layout_response(url, headers=None):
 
 result = check_layout_response(layout_list_by_folder, headers=headers)
 
-source_url = 'https://assets.vedia.ai/rawshorts/public/vedia/mrss/prod/generic/sports-previews/mlb-pre/rss/baseball/mlb-game-preview/barvanna/latest.mrss.xml'
-# source_url = 'https://cdn.itsoch.com/latest.mrss.xml'
+# source_url = 'https://assets.vedia.ai/rawshorts/public/vedia/mrss/prod/generic/sports-previews/mlb-pre/rss/baseball/mlb-game-preview/barvanna/latest.mrss.xml'
+source_url = 'https://cdn.itsoch.com/latest.mrss.xml'
 
 # URL for uploading the video
 upload_url = 'https://cdn2.barvanna.com/api/library'
@@ -196,8 +196,8 @@ def create_layout(arr):
                 'name': filename,
                 'folderId': '5',
                 'deleteOnExpiry': 1,
-                'expires' : '2024-10-08 21:20:00'
-                # 'expires': item['exp_date']
+                # 'expires' : '2024-10-08 21:20:00'
+                'expires': item['exp_date']
             }
             headers = {
                 'Authorization': f'Bearer {access_token}'
