@@ -357,7 +357,7 @@ def create_replacement_array(missing_layouts, missing_teams):
                 'layout_id': layout_data['layoutId'],
                 'by_team': team_data['by_team'],
                 'video_url': team_data['video_url'],
-                'exp_date' : team_data['exp_Date']
+                'exp_date' : team_data['exp_date']
             })
 
     return replacements
