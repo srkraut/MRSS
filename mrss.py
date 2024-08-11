@@ -174,7 +174,7 @@ def fetch_source() :
                 teams_text = teams.text.strip()
                 video_url = video_content.get('url')
                 # Append the team and video URL to the array
-                teams_videos.append({'by_team': teams_text, 'video_url': video_url})
+                teams_videos.append({'by_team': teams_text, 'video_url': video_url , 'exp_date' : formatted_date})
 
     # Print the array
     print(teams_videos)   
@@ -197,7 +197,7 @@ def create_layout(arr):
                 'folderId': '5',
                 'deleteOnExpiry': 1,
                 # 'expires' : '2024-09-08 21:20:00'
-                'expires': formatted_date
+                'expires': item['exp_date']
             }
             headers = {
                 'Authorization': f'Bearer {access_token}'
@@ -408,7 +408,7 @@ def delete_and_create_new_layout(arr):
                 'folderId': '5',
                 'deleteOnExpiry': 1,
                 # 'expires' : '2024-09-08 21:20:00'
-                'expires': formatted_date
+                'expires': item['exp_date']
             }
             headers = {
                 'Authorization': f'Bearer {access_token}'
@@ -470,6 +470,8 @@ def delete_and_create_new_layout(arr):
     print("Completed processing all items")
 
 delete_and_create_new_layout(replacement_array)
+
+
 
 file_path = 'output_array.json'
 # if replacement_array:
@@ -539,7 +541,8 @@ else:
                 new_entry = {
                     'layout_id': item['layoutId'],
                     'by_team': update['by_team'],
-                    'video_url': update['video_url']
+                    'video_url': update['video_url'],
+                    'exp_date' : update['exp_date']
                 }
                 new_update_array.append(new_entry)
     
