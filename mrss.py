@@ -121,6 +121,12 @@ def upload_file(file_path, url, data, headers):
         response = requests.post(url, files=files, data=data, headers=headers)
         response.raise_for_status()
         return response
+
+def is_date_past(date_str):
+    date_format = "%Y-%m-%d %H:%M:%S"
+    date_obj = datetime.strptime(date_str, date_format)
+    current_time = datetime.now()
+    return date_obj < current_time
     
 #constants
 teams_videos = []
@@ -183,6 +189,12 @@ def create_layout(arr):
     # Loop through each item in teams_videos and upload the video``
     for item in arr:
         try:
+            exp_date = ""
+            if is_date_past(item['exp_date']):
+                exp_date = '2024-09-08 21:20:00'
+            else:
+                exp_date = item['exp_date']
+            
             teams_text = item['by_team'].replace(' ', '_')
             video_url = item['video_url']
 
@@ -197,7 +209,7 @@ def create_layout(arr):
                 'folderId': '5',
                 'deleteOnExpiry': 1,
                 # 'expires' : '2024-10-08 21:20:00'
-                'expires': item['exp_date']
+                'expires': exp_date
             }
             headers = {
                 'Authorization': f'Bearer {access_token}'
@@ -374,6 +386,12 @@ def delete_and_create_new_layout(arr):
     # Loop through each item in teams_videos and upload the video
     for item in arr:
         try:
+            exp_date = ""
+            if is_date_past(item['exp_date']):
+                exp_date = '2024-09-08 21:20:00'
+            else:
+                exp_date = item['exp_date']
+
             layout_headers = {
                 'Authorization': f'Bearer {access_token}',
                 'Content-Type': 'application/json'
@@ -409,7 +427,7 @@ def delete_and_create_new_layout(arr):
                 'folderId': '5',
                 'deleteOnExpiry': 1,
                 # 'expires' : '2024-09-08 21:20:00'
-                'expires': item['exp_date']
+                'expires': exp_date
             }
             headers = {
                 'Authorization': f'Bearer {access_token}'
