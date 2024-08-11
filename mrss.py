@@ -336,7 +336,7 @@ def compare_arrays(source, cms):
     
     for team, item in source_dict.items():
         if team not in cms_dict:
-            missing_teams.append({'by_team': item['by_team'], 'video_url': item['video_url']})
+            missing_teams.append({'by_team': item['by_team'], 'video_url': item['video_url'] , 'exp_date': item['exp_date']})
 
 # Find the missing layouts
 update_result = compare_arrays(source_names, cms_layout)
