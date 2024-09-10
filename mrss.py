@@ -343,7 +343,7 @@ def compare_arrays(source, cms):
    
     for layout, item in cms_dict.items():
         if layout not in source_dict:
-            missing_layouts.append({'layout': item['layout'], 'layoutId': item['layoutId']})
+            missing_layouts.append({'layout': item['layout'], 'layoutId': item['layoutId'], 'exp_date': item['exp_date']})
 
     
     for team, item in source_dict.items():
