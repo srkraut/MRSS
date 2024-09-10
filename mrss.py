@@ -364,6 +364,14 @@ update_result = compare_arrays(source_names, cms_layout)
 def create_replacement_array(missing_layouts, missing_teams):
     """Creates a replacement array based on missing layouts and teams."""
     replacements = []
+    current_date = datetime.now()
+
+    # Add one day
+    next_day = current_date + timedelta(days=1)
+
+    # Format the new date as a string
+    next_day_str = next_day.strftime('%Y-%m-%d %H:%M:%S')
+    exp_date = next_day_str
     max_length = max(len(missing_layouts), len(missing_teams))
 
     for i in range(max_length):
@@ -377,7 +385,7 @@ def create_replacement_array(missing_layouts, missing_teams):
                 'layout_id': layout_data['layoutId'],
                 'by_team': team_data['by_team'],
                 'video_url': team_data['video_url'],
-                'exp_date' : team_data.get('exp_date')
+                'exp_date' : exp_date
             })
 
     return replacements
@@ -567,6 +575,14 @@ else:
     print("There is a new video in the existing layout, updating the layout.")
     # compare new video with cms layout and delete the cms layout and replace by new video and name
     # Initialize the new array
+    current_date = datetime.now()
+
+    # Add one day
+    next_day = current_date + timedelta(days=1)
+
+    # Format the new date as a string
+    next_day_str = next_day.strftime('%Y-%m-%d %H:%M:%S')
+    exp_date = next_day_str
 
     # Iterate over the new update array
     for update in new_video:
@@ -577,7 +593,7 @@ else:
                     'layout_id': item['layoutId'],
                     'by_team': update['by_team'],
                     'video_url': update['video_url'],
-                    'exp_date' : update['exp_date']
+                    'exp_date' : exp_date
                 }
                 new_update_array.append(new_entry)
     
