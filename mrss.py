@@ -324,7 +324,7 @@ url2 = 'https://cdn2.barvanna.com/api/layout?folderId=7&start=10&size=15'
 
 # Assuming headers is already defined in your environment
 cms_layout = fetch_and_merge_layouts(url1, url2, headers)
-print(cms_layout)
+# print(cms_layout)
 
 
 fetch_source()
@@ -375,7 +375,7 @@ def create_replacement_array(missing_layouts, missing_teams):
     return replacements
 
 
-
+print("missing team: " , missing_teams)
 replacement_array = create_replacement_array(missing_layouts, missing_teams)
 print(replacement_array)
 
