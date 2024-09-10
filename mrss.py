@@ -396,7 +396,15 @@ def delete_and_create_new_layout(arr):
         try:
             exp_date = ""
             if is_date_past(item['exp_date']):
-                exp_date = '2024-09-08 21:20:00'
+                # Get the current date and time
+                current_date = datetime.now()
+
+                # Add one day
+                next_day = current_date + timedelta(days=1)
+
+                # Format the new date as a string
+                next_day_str = next_day.strftime('%Y-%m-%d %H:%M:%S')
+                exp_date = next_day_str
             else:
                 exp_date = item['exp_date']
 
