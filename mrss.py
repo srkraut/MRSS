@@ -191,7 +191,7 @@ def create_layout(arr):
         try:
             exp_date = ""
             if is_date_past(item['exp_date']):
-                exp_date = '2024-09-08 21:20:00'
+                exp_date = '2025-09-08 21:20:00'
             else:
                 exp_date = item['exp_date']
             
