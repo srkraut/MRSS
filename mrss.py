@@ -183,7 +183,7 @@ def fetch_source() :
                 teams_videos.append({'by_team': teams_text, 'video_url': video_url , 'exp_date' : formatted_date})
 
     # Print the array
-    print(teams_videos)   
+    # print(teams_videos)   
 
 def create_layout(arr):
     # Loop through each item in teams_videos and upload the video``
@@ -369,7 +369,7 @@ def create_replacement_array(missing_layouts, missing_teams):
                 'layout_id': layout_data['layoutId'],
                 'by_team': team_data['by_team'],
                 'video_url': team_data['video_url'],
-                'exp_date' : team_data['exp_date']
+                'exp_date' : team_data.get('exp_date')
             })
 
     return replacements
@@ -377,7 +377,7 @@ def create_replacement_array(missing_layouts, missing_teams):
 
 print("missing team: " , missing_teams)
 replacement_array = create_replacement_array(missing_layouts, missing_teams)
-print(replacement_array)
+# print(replacement_array)
 
 
 #create a function to delete the layout that is in the cms using update_result
