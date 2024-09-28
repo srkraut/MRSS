@@ -59,5 +59,6 @@ def compare_arrays(source, cms):
         
         return replacements
     else:
-        return replacements
         print("No data in one of the field to compare")
+        return replacements
+        

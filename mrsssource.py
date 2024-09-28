@@ -51,7 +51,12 @@ def fetch_source(source_url):
             teams = media_group.find('media:team', namespaces)
             video_content = media_group.find('media:content[@type="video/mp4"]', namespaces)
             if teams is not None and video_content is not None:
-                current_datetime = datetime.now()
+                # Define the timezone for Eastern Time (ET)
+                eastern = pytz.timezone('US/Eastern')
+
+                # Get the current time in UTC and convert it to Eastern Time
+                current_datetime = datetime.now(eastern)
+                print(current_datetime)
                 # Convert formatted_date (string) back to a datetime object using the same format
                 formatted_date_obj = datetime.strptime(formatted_date, output_format)
 
@@ -85,3 +90,4 @@ def fetch_source(source_url):
                         # print(teams_text + " Not in list")
 
     return teams_videos
+    
