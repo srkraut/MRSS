@@ -5,6 +5,7 @@ from tqdm import tqdm
 from datetime import datetime, timedelta
 import pytz
 from pathlib import Path
+from mlbteam import *
 
 def fetch_source(source_url):
     teams_videos = []
@@ -76,6 +77,10 @@ def fetch_source(source_url):
 
 
                 else:
-                    teams_videos.append({'by_team': teams_text, 'video_url': video_url , 'exp_date' : formatted_date})
+                    if contains_team(teams_text):
+                        print(teams_text + " is in the list")
+                        teams_videos.append({'by_team': teams_text, 'video_url': video_url , 'exp_date' : formatted_date})
+                    else:
+                        print(teams_text + " Not in list")
 
     return teams_videos
