@@ -57,7 +57,7 @@ print(cms_array)
 if cms_array:
     #there is layout in cms and do replacement
     if source_array:
-        replace_and_create_new_layout(compare_arrays(source_array,cms_array),access_token,'https://{url_all}/api/library',folderId,url_all)
+        replace_and_create_new_layout(compare_arrays(source_array,cms_array),access_token,f'https://{url_all}/api/library',folderId,url_all)
     else:
         print("no data in source")
 else:
