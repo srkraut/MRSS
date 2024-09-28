@@ -59,7 +59,8 @@ def fetch_source(source_url):
                 video_url = video_content.get('url')
                 # Append the team and video URL to the array
                 if formatted_date_obj < current_datetime:
-                    print(formatted_date + " The formatted date is in the past.")
+                    # print(formatted_date + " The formatted date is in the past.")
+                    pass
                     # # Get the current date and time
                     # localized_datetime_obj = datetime.now()
 
@@ -78,9 +79,9 @@ def fetch_source(source_url):
 
                 else:
                     if contains_team(teams_text):
-                        print(teams_text + " is in the list")
                         teams_videos.append({'by_team': teams_text, 'video_url': video_url , 'exp_date' : formatted_date})
                     else:
-                        print(teams_text + " Not in list")
+                        pass
+                        # print(teams_text + " Not in list")
 
     return teams_videos

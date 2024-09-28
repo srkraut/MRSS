@@ -37,7 +37,7 @@ if response.status_code == 200:
     # Parse the returned JSON for the access token
     token_data = response.json()
     access_token = token_data.get('access_token')
-    print('Access token:', access_token)
+    # print('Access token:', access_token)
     headers = {
             'Authorization': f'Bearer {access_token}'
         }
@@ -46,13 +46,13 @@ else:
 
 
 source_array = fetch_source(source_url)
-print(source_array)
+# print(source_array)
 
 # fetch 
 url1 = f'https://{url_all}/api/layout?folderId={folderId}&start=0&size=10'
 url2 = f'https://{url_all}/api/layout?folderId={folderId}&start=10&size=15'# Assuming headers is already defined in your environment
 cms_array = fetch_and_merge_layouts(url1, url2, headers)
-print(cms_array)
+# print(cms_array)
 
 if cms_array:
     #there is layout in cms and do replacement

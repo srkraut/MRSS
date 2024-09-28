@@ -31,23 +31,33 @@ def compare_arrays(source, cms):
     """Creates a replacement array based on missing layouts and teams."""
     replacements = []
 
+    print("missing layout ------------------")
+    print(missing_layouts)
+
+    print("missing team ------------------")
+    print(missing_teams)
+
 
     # Format the new date as a string
     max_length = max(len(missing_layouts), len(missing_teams))
 
-    for i in range(max_length):
-        layout_data = missing_layouts[i] if i < len(missing_layouts) else {'layout': None, 'layoutId': None, 'publishedStatus': None}
-        team_data = missing_teams[i] if i < len(missing_teams) else {'by_team': None, 'video_url': None}
+    if missing_teams and missing_layouts:
+        for i in range(max_length):
+            layout_data = missing_layouts[i] if i < len(missing_layouts) else {'layout': None, 'layoutId': None, 'publishedStatus': None}
+            team_data = missing_teams[i] if i < len(missing_teams) else {'by_team': None, 'video_url': None}
+            
+            # Only create a replacement if either layout or team data is not None
+            if layout_data['layout'] or team_data['by_team']:
+                replacements.append({
+                    'replace_layout': layout_data['layout'],
+                    'layout_id': layout_data['layoutId'],
+                    'by_team': team_data['by_team'],
+                    'video_url': team_data['video_url'],
+                    'exp_date' : team_data['exp_date'],
+                    'publishedStatus': layout_data['publishedStatus']
+                })
         
-        # Only create a replacement if either layout or team data is not None
-        if layout_data['layout'] or team_data['by_team']:
-            replacements.append({
-                'replace_layout': layout_data['layout'],
-                'layout_id': layout_data['layoutId'],
-                'by_team': team_data['by_team'],
-                'video_url': team_data['video_url'],
-                'exp_date' : team_data['exp_date'],
-                'publishedStatus': layout_data['publishedStatus']
-            })
-
-    return replacements
+        return replacements
+    else:
+        return replacements
+        print("No data in one of the field to compare")
