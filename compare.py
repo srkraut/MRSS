@@ -45,17 +45,22 @@ def compare_arrays(source, cms):
         for i in range(max_length):
             layout_data = missing_layouts[i] if i < len(missing_layouts) else {'layout': None, 'layoutId': None, 'publishedStatus': None}
             team_data = missing_teams[i] if i < len(missing_teams) else {'by_team': None, 'video_url': None}
+            print("team data ------------------")
+            print(team_data)
             
             # Only create a replacement if either layout or team data is not None
             if layout_data['layout'] or team_data['by_team']:
-                replacements.append({
-                    'replace_layout': layout_data['layout'],
-                    'layout_id': layout_data['layoutId'],
-                    'by_team': team_data['by_team'],
-                    'video_url': team_data['video_url'],
-                    'exp_date' : team_data['exp_date'],
-                    'publishedStatus': layout_data['publishedStatus']
-                })
+                if 'exp_date' in team_data:
+                    replacements.append({
+                        'replace_layout': layout_data['layout'],
+                        'layout_id': layout_data['layoutId'],
+                        'by_team': team_data['by_team'],
+                        'video_url': team_data['video_url'],
+                        'exp_date' : team_data['exp_date'],
+                        'publishedStatus': layout_data['publishedStatus']
+                    })
+                else:
+                    pass
         
         return replacements
     else:
