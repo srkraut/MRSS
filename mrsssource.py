@@ -63,7 +63,7 @@ def fetch_source(source_url):
                 teams_text = teams.text.strip()
                 video_url = video_content.get('url')
                 # Append the team and video URL to the array
-                if formatted_date_obj < current_datetime:
+                if localized_datetime_obj < current_datetime:
                     # print(formatted_date + " The formatted date is in the past.")
                     pass
                     # # Get the current date and time
