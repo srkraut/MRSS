@@ -31,11 +31,11 @@ def compare_arrays(source, cms):
     """Creates a replacement array based on missing layouts and teams."""
     replacements = []
 
-    print("missing layout ------------------")
-    print(missing_layouts)
+    # print("missing layout ------------------")
+    # print(missing_layouts)
 
-    print("missing team ------------------")
-    print(missing_teams)
+    # print("missing team ------------------")
+    # print(missing_teams)
 
 
     # Format the new date as a string

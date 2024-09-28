@@ -56,7 +56,7 @@ def fetch_source(source_url):
 
                 # Get the current time in UTC and convert it to Eastern Time
                 current_datetime = datetime.now(eastern)
-                print(current_datetime)
+                # print(current_datetime)
                 # Convert formatted_date (string) back to a datetime object using the same format
                 formatted_date_obj = datetime.strptime(formatted_date, output_format)
 
