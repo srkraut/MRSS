@@ -59,18 +59,18 @@ def fetch_source(source_url):
                 # Append the team and video URL to the array
                 if formatted_date_obj < current_datetime:
                     print(formatted_date + " The formatted date is in the past.")
-                    # # Get the current date and time
-                    # localized_datetime_obj = datetime.now()
+                    # Get the current date and time
+                    localized_datetime_obj = datetime.now()
 
-                    # # Add one hour to the current time
-                    # one_hour_later = localized_datetime_obj + timedelta(hours=1)
+                    # Add one hour to the current time
+                    one_hour_later = localized_datetime_obj + timedelta(hours=1)
 
-                    # # Define the output format
-                    # output_format = "%Y-%m-%d %H:%M:%S"
+                    # Define the output format
+                    output_format = "%Y-%m-%d %H:%M:%S"
 
-                    # # Format the time one hour from now
-                    # formatted_one_hour_later = one_hour_later.strftime(output_format)
-                    # teams_videos.append({'by_team': teams_text, 'video_url': video_url , 'exp_date' : formatted_one_hour_later})
+                    # Format the time one hour from now
+                    formatted_one_hour_later = one_hour_later.strftime(output_format)
+                    teams_videos.append({'by_team': teams_text, 'video_url': video_url , 'exp_date' : formatted_one_hour_later})
                     # print(formatted_one_hour_later)
 
 

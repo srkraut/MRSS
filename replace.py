@@ -49,7 +49,7 @@ def replace_and_create_new_layout(arr,access_token,upload_url,folderId,url_all):
                print(edit_response)
 
             if item['layout_id'] is None : 
-                create_layout(arr,access_token,folderId)
+                create_layout(arr,access_token,folderId,url_all)
                 break
 
             # Step 1: Download the video file from the provided URL
